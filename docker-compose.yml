@@ -1,0 +1,15 @@
+services:
+  webapp:
+    image: automaticbytes/demo-app:latest
+    ports:
+      - "3100:3100"
+    container_name: webapp
+
+  playwright:
+    build:
+      context: .
+    container_name: playwright-framework
+    depends_on:
+      - webapp
+    environment:
+      - BASE_URL=http:/webapp:3100
