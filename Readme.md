@@ -1,6 +1,6 @@
-# **WebApp Playwright Automation with Docker and GitHub Actions**
+# **WebApp Playwright Automation with Docker**
 
-This repository contains an end-to-end testing framework for a `webapp` using **Playwright**. The setup is fully containerized using **Docker** and includes a **GitHub Actions** workflow for continuous integration.
+This repository contains an end-to-end testing framework for a `webapp` using **Playwright**. The setup is fully containerized using **Docker** .
 
 ---
 
@@ -11,7 +11,6 @@ This repository contains an end-to-end testing framework for a `webapp` using **
 - [Setup and Usage](#setup-and-usage)
   - [Running Locally](#running-locally)
   - [Running with Docker](#running-with-docker)
-- [CI/CD with GitHub Actions](#cicd-with-github-actions)
 - [Configuration](#configuration)
 - [Contributing](#contributing)
 - [License](#license)
@@ -31,7 +30,6 @@ This repository contains an end-to-end testing framework for a `webapp` using **
 Before setting up the project, ensure the following are installed on your system:
 1. [Node.js](https://nodejs.org/) (v16 or higher)
 2. [Docker](https://www.docker.com/)
-3. [Git](https://git-scm.com/)
 
 ---
 
@@ -42,10 +40,7 @@ home-test-dockerized
 ├── docker-compose.yml             # Docker Compose file for multi-container setup
 ├── playwright.config.js           # Playwright configuration file
 ├── tests/
-│   ├── example.spec.js            # Example Playwright test
-├── .github/
-│   └── workflows/
-│       └── playwright.yml         # GitHub Actions workflow for CI/CD
+│   ├── example.spec.js            # Example Playwright test             
 ├── package.json                   # Node.js dependencies and scripts
 ├── package-lock.json              # Dependency lock file
 ├── README.md                      # Project documentation
@@ -99,23 +94,10 @@ home-test-dockerized
 
 ---
 
-## **CI/CD with GitHub Actions**
-
-This repository includes a GitHub Actions workflow (`.github/workflows/playwright.yml`) that:
-1. Builds and runs the `webapp` and Playwright containers.
-2. Executes the Playwright tests.
-3. Automatically triggers on every push to the `main` branch or pull request.
-
-To enable the workflow:
-1. Push your code to a GitHub repository.
-2. The workflow will run automatically for every push or pull request.
-
----
-
 ## **Configuration**
 
 ### **Playwright Configuration**
-The Playwright configuration is defined in `playwright.config.ts`. Key options include:
+The Playwright configuration is defined in `playwright.config.js`. Key options include:
 - `baseURL`: URL of the application under test. This is set via the `BASE_URL` environment variable.
 - `headless`: Set to `true` for non-GUI environments.
 - `screenshot`: Captures screenshots for failed tests.
