@@ -6,3 +6,10 @@ export function setupBeforeEach() {
   });
 }
 
+export function setupAfterEach(){
+  test.afterEach(async({page})=>{
+    // console.log("tearing down...")
+    page.close();
+  })
+}
+

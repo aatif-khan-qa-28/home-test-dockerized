@@ -1,8 +1,9 @@
 const { test, expect } = require("@playwright/test");
 const { PageObjectManager } = require("../pages/PageObjectManager");
-const { setupBeforeEach } = require("../helpers/testSetup");
+const { setupBeforeEach,setupAfterEach } = require("../helpers/testSetup");
 
 setupBeforeEach();
+setupAfterEach();
 
 test("TC4 - Checkout Form Order Success", async ({ page }) => {
   const pom = new PageObjectManager(page);

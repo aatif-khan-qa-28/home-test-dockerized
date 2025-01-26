@@ -1,8 +1,9 @@
 const { test, expect } = require("@playwright/test");
 const { PageObjectManager } = require("../pages/PageObjectManager");
-const { setupBeforeEach } = require("../helpers/testSetup");
+const { setupBeforeEach,setupAfterEach } = require("../helpers/testSetup");
 
 setupBeforeEach();
+setupAfterEach();
 
 test("TC7 - Grid Item Test", async ({ page }) => {
   const pom = new PageObjectManager(page);

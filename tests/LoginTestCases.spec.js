@@ -1,11 +1,12 @@
 const { test, expect } = require("@playwright/test");
 const { PageObjectManager } = require("../pages/PageObjectManager");
-const { setupBeforeEach } = require("../helpers/testSetup");
+const { setupBeforeEach,setupAfterEach } = require("../helpers/testSetup");
 const credentials = JSON.parse(
   JSON.stringify(require("../test-data/credentials.json"))
 );
 
 setupBeforeEach();
+setupAfterEach();
 
 test("TC1 - Login Success", async ({ page }) => {
   const pom = new PageObjectManager(page);
@@ -39,6 +40,6 @@ test("TC3 - Login Failure B", async ({ page }) => {
   const homePage = pom.getHomePage();
 
   await loginPage.navigate();
-  await loginPage.login("","")
+  await loginPage.login("", "");
   await loginPage.verifyFieldEmptyErrorMessage();
 });
