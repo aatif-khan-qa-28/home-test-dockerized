@@ -39,8 +39,21 @@ home-test-dockerized
 ├── Dockerfile                     # Docker image for Playwright tests
 ├── docker-compose.yml             # Docker Compose file for multi-container setup
 ├── playwright.config.js           # Playwright configuration file
+├── helpers/   
+│   ├── testSetup.js               # common beforeEach and afterEach method definition  
+├── pages/
+│   ├── CheckoutPage.js            # page object class for Checkout page  
+│   ├── GridPage.js                # page object class for Grid page 
+│   ├── HomePage.js                # page object class for Home page  
+│   ├── LoginPage.js               # page object class for Login page 
+│   ├── OrderPage.js               # page object class for Order page  
+│   ├── PageObjectManager.js       # this helps to use any page in specs file rather than importing.
+│   ├── SearchPage.js              # page object class for Search page 
 ├── tests/
-│   ├── example.spec.js            # Example Playwright test             
+│   ├── CheckoutTestCases.spec.js  #playwright test cases: 4, 5, 6
+|   ├── GridTestCases.spec.js      #playwright test cases: 7,8
+|   ├── LoginTestCases.spec.js     #playwright test cases: 1,2,3
+|   ├── SearchTestCases.spec.js    #playwright test cases: 9,10
 ├── package.json                   # Node.js dependencies and scripts
 ├── package-lock.json              # Dependency lock file
 ├── README.md                      # Project documentation
@@ -54,8 +67,8 @@ home-test-dockerized
 
 1. **Clone the Repository**:
    ```bash
-   git clone https://github.com/your-username/your-repo-name.git
-   cd your-repo-name
+   git clone https://github.com/aatif-khan-qa-28/home-test-dockerized.git
+   cd home-test-dockerized
    ```
 
 2. **Install Dependencies**:
