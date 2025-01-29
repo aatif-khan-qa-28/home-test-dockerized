@@ -1,37 +1,40 @@
-const { test, expect } = require("@playwright/test");
-const { PageObjectManager } = require("../pages/PageObjectManager");
-const { setupBeforeEach,setupAfterEach } = require("../helpers/testSetup");
+const { test } = require("@playwright/test");
 
-setupBeforeEach();
-setupAfterEach();
+const { CheckoutPageSteps } = require("../test-steps/CheckoutPageSteps");
+const { OrderPageSteps } = require("../test-steps/OrderPageSteps");
 
-test("TC4 - Checkout Form Order Success", async ({ page }) => {
-  const pom = new PageObjectManager(page);
-  const checkoutPage = pom.getCheckoutPage(page);
-  const orderPage = pom.getOrderPage(page);
+test.describe("Checkout Page Tests", () => {
+  let checkoutPageSteps;
+  let orderPageSteps;
 
-  await checkoutPage.navigate();
-  await checkoutPage.fillCheckoutPage();
-  await checkoutPage.verifyCheckBoxToCheckmark();
-  await checkoutPage.submitCheckoutForm();
-  await orderPage.verifyOrderConfirmationNumber();
-});
+  test.beforeEach(async ({ page }) => {
+    checkoutPageSteps = new CheckoutPageSteps(page);
+    orderPageSteps = new OrderPageSteps(page);
+    await checkoutPageSteps.navigate();
+    console.log(`Running ${test.info().title}`);
+  });
 
-test("TC5 - Checkout Form Alert ", async ({ page }) => {
-  const pom = new PageObjectManager(page);
-  const checkoutPage = pom.getCheckoutPage(page);
-  const orderPage = pom.getOrderPage(page);
+  test.afterEach(async ({ page }) => {
+    await page.close();
+    console.log(`Closed page after running ${test.info().title}`);
+  });
 
-  await checkoutPage.navigate();
-  await checkoutPage.fillCheckoutPage();
-  await checkoutPage.verifyCheckBoxToUncheck();
-  await checkoutPage.submitCheckoutForm();
-  await checkoutPage.handleAlertPopUp();
-});
+  test("TC4 - Checkout Form Order Success", async () => {
+    await checkoutPageSteps.fillCheckoutPage();
+    await checkoutPageSteps.verifyCheckBoxToCheckmark();
+    await checkoutPageSteps.submitCheckoutForm();
+    await orderPageSteps.verifyOrderConfirmationNumber();
+  });
 
-test("TC6 - Cart Total Test", async ({ page }) => {
-  const pom = new PageObjectManager(page);
-  const checkoutPage = pom.getCheckoutPage(page);
-  await checkoutPage.navigate();
-  await checkoutPage.allProductSum();
+  test("TC5 - Checkout Form Alert ", async () => {
+    await checkoutPageSteps.fillCheckoutPage();
+    await checkoutPageSteps.verifyCheckBoxToUncheck();
+    await checkoutPageSteps.submitCheckoutForm();
+    await checkoutPageSteps.handleAlertPopUp();
+  });
+
+  test("TC6 - Cart Total Test", async () => {
+    await checkoutPageSteps.navigate();
+    await checkoutPageSteps.allProductSum();
+  });
 });

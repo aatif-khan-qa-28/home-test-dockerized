@@ -1,0 +1,12 @@
+{
+    "LoginPage": {
+        "wrongLoginDetailsError": "Wrong credentials",
+        "empltyLoginDetailsError": "Fields can not be empty"
+    },
+    "HomePage": {
+        "pageHeader": "Welcome!"
+    },
+    "GridPage": {
+        "productName": "Super Pepperoni"
+    }
+}

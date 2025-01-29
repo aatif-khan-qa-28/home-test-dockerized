@@ -39,15 +39,24 @@ home-test-dockerized
 ├── Dockerfile                     # Docker image for Playwright tests
 ├── docker-compose.yml             # Docker Compose file for multi-container setup
 ├── playwright.config.js           # Playwright configuration file
-├── helpers/   
-│   ├── testSetup.js               # common beforeEach and afterEach method definition  
+├── test-steps/                    # Actions/Steps perfomed on the page
+│   ├── CheckoutPageSteps.js       
+│   ├── GridPageSteps.js           
+│   ├── HomePageSteps.js           
+│   ├── LoginPageSteps.js          
+│   ├── OrderPageSteps.js          
+│   ├── SearchPageSteps.js    
+├── test-data/    
+│   ├── AssertTexts.js            # Test data with expected texts to assert with actual texts
+│   ├── checkoutFormData.js   
+│   ├── loginData.js   
+│   ├── search.json   
 ├── pages/
 │   ├── CheckoutPage.js            # page object class for Checkout page  
 │   ├── GridPage.js                # page object class for Grid page 
 │   ├── HomePage.js                # page object class for Home page  
 │   ├── LoginPage.js               # page object class for Login page 
 │   ├── OrderPage.js               # page object class for Order page  
-│   ├── PageObjectManager.js       # this helps to use any page in specs file rather than importing.
 │   ├── SearchPage.js              # page object class for Search page 
 ├── tests/
 │   ├── CheckoutTestCases.spec.js  #playwright test cases: 4, 5, 6

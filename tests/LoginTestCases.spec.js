@@ -1,45 +1,47 @@
-const { test, expect } = require("@playwright/test");
-const { PageObjectManager } = require("../pages/PageObjectManager");
-const { setupBeforeEach,setupAfterEach } = require("../helpers/testSetup");
-const credentials = JSON.parse(
-  JSON.stringify(require("../test-data/credentials.json"))
+const { test } = require("@playwright/test");
+
+const { LoginPageSteps } = require("../test-steps/LoginPageSteps");
+const { HomePageSteps } = require("../test-steps/HomePageSteps");
+const loginData = JSON.parse(
+  JSON.stringify(require("../test-data/loginData.json"))
 );
 
-setupBeforeEach();
-setupAfterEach();
+test.describe("Login Page Tests", () => {
+  let loginPageSteps;
+  let homePageSteps;
 
-test("TC1 - Login Success", async ({ page }) => {
-  const pom = new PageObjectManager(page);
-  const loginPage = pom.getLoginPage();
-  const homePage = pom.getHomePage();
+  test.beforeEach(async ({ page }) => {
+    loginPageSteps = new LoginPageSteps(page);
+    homePageSteps = new HomePageSteps(page);
+    await loginPageSteps.navigate();
+    console.log(`Running ${test.info().title}`);
+  });
 
-  await loginPage.navigate();
-  await loginPage.login(
-    credentials.validUser.username,
-    credentials.validUser.password
-  );
-  await homePage.verifyWelcomeMessage();
-});
+  test.afterEach(async ({ page }) => {
+    await page.close();
+    console.log(`Closed page after running ${test.info().title}`);
+  });
 
-test("TC2 - Login Failure A", async ({ page }) => {
-  const pom = new PageObjectManager(page);
-  const loginPage = pom.getLoginPage();
-  const homePage = pom.getHomePage();
+  test("TC1 - Login Success", async () => {
+    await loginPageSteps.login(
+      loginData.validUser.username,
+      loginData.validUser.password
+    );
+    await homePageSteps.verifyWelcomeMessage();
+  });
+  test("TC2 - Login Failure A", async () => {
+    await loginPageSteps.login(
+      loginData.invalidUser.username,
+      loginData.invalidUser.password
+    );
+    await loginPageSteps.verifyWrongCredentialErrorMessage();
+  });
 
-  await loginPage.navigate();
-  await loginPage.login(
-    credentials.invalidUser.username,
-    credentials.invalidUser.password
-  );
-  await loginPage.verifyWrongCredentialErrorMessage();
-});
-
-test("TC3 - Login Failure B", async ({ page }) => {
-  const pom = new PageObjectManager(page);
-  const loginPage = pom.getLoginPage();
-  const homePage = pom.getHomePage();
-
-  await loginPage.navigate();
-  await loginPage.login("", "");
-  await loginPage.verifyFieldEmptyErrorMessage();
+  test("TC3 - Login Failure B", async ({ page }) => {
+    await loginPageSteps.login(
+      loginData.blankData.username,
+      loginData.blankData.password
+    );
+    await loginPageSteps.verifyFieldEmptyErrorMessage();
+  });
 });
