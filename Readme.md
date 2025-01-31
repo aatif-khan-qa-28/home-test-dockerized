@@ -12,15 +12,12 @@ This repository contains an end-to-end testing framework for a `webapp` using **
   - [Running Locally](#running-locally)
   - [Running with Docker](#running-with-docker)
 - [Configuration](#configuration)
-- [Contributing](#contributing)
-- [License](#license)
 
 ---
 
 ## **Features**
 - Automated tests using **Playwright**.
 - Containerized test and application environment using **Docker**.
-- Continuous integration with **GitHub Actions**.
 - Support for configurable base URLs and headless execution.
 - Includes retry, screenshots, and video recording for failed tests.
 
@@ -28,7 +25,7 @@ This repository contains an end-to-end testing framework for a `webapp` using **
 
 ## **Prerequisites**
 Before setting up the project, ensure the following are installed on your system:
-1. [Node.js](https://nodejs.org/) (v16 or higher)
+1. [Node.js](https://nodejs.org/)
 2. [Docker](https://www.docker.com/)
 
 ---
@@ -48,8 +45,8 @@ home-test-dockerized
 │   ├── SearchPageSteps.js    
 ├── test-data/    
 │   ├── AssertTexts.js            # Test data with expected texts to assert with actual texts
-│   ├── checkoutFormData.js   
-│   ├── loginData.js   
+│   ├── checkoutFormData.js       # Test data to fill the Checkout Form
+│   ├── loginData.js              # Test data to Login with various usernames and passwords
 │   ├── search.json   
 ├── pages/
 │   ├── CheckoutPage.js            # page object class for Checkout page  
@@ -97,6 +94,10 @@ home-test-dockerized
    export BASE_URL=http://localhost:3100
    npx playwright test
    ```
+   To run the tests in `headed` mode:
+   ```bash
+   npx playwright test --headed
+   ```
 
 ---
 
@@ -121,19 +122,21 @@ home-test-dockerized
 ### **Playwright Configuration**
 The Playwright configuration is defined in `playwright.config.js`. Key options include:
 - `baseURL`: URL of the application under test. This is set via the `BASE_URL` environment variable.
+- `reporter` : Set to `html` for HTML reports.
 - `headless`: Set to `true` for non-GUI environments.
 - `screenshot`: Captures screenshots for failed tests.
 - `video`: Records videos for failed tests.
 - `trace` : Trace for failed tests.
+- `browserName` : Set the desired browserName to execute it on Chromium/Safari/Webkit
 
-You can customize these options as needed.
+You can customize these options as needed. 
+- Set `headless` as `false` to run tests in headed mode.
+- Set `browserName` to `firefox` or `webkit` to execute tests in respective browsers
 
 ### **Environment Variables**
 - `BASE_URL`: The base URL of the application to test (default: `http://localhost:3100`).
 
 ---
 
-## **License**
-This project is licensed under the MIT License. See the `LICENSE` file for details.
-
----
+### **Test Results**
+Below are the sample HTML test reports which will be stored in `/playwright-report/` folder.
