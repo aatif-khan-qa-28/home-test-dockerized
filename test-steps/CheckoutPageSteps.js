@@ -65,6 +65,7 @@ class CheckoutPageSteps {
 
   async allProductSum() {
     const prices = await this.checkoutPage.cartPrices.allInnerTexts();
+    //removing the `$` symbol from the price which is prefixed to the product value.
     const floatPrices = prices.map((price) =>
       parseFloat(price.replace(/[^0-9.]/g, ""))
     );

@@ -1,7 +1,3 @@
-const { expect } = require("@playwright/test");
-const formdata = JSON.parse(
-  JSON.stringify(require("../test-data/checkoutFormData.json"))
-);
 class CheckoutPage {
   constructor(page) {
     this.page = page;

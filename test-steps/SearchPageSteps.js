@@ -1,4 +1,7 @@
 const { expect } = require("@playwright/test");
+const AssertText = JSON.parse(
+  JSON.stringify(require("../test-data/AssertTexts.json"))
+);
 const{SearchPage} = require("../pages/SearchPage")
 class SearchPageSteps {
   constructor(page) {
@@ -16,12 +19,10 @@ class SearchPageSteps {
   }
 
   async verifySuccessSearch(searchTerm) {
-    await expect(this.searchPage.searchResult).toHaveText(
-      `Found one result for ${searchTerm}`
-    );
+    await expect(await this.searchPage.searchResult).toHaveText(AssertText.SearchPage.successSearchMsg + `${searchTerm}`)
   }
   async verifyEmptySearch() {
-    await expect(this.searchPage.searchResult).toHaveText("Please provide a search word.");
+    await expect(this.searchPage.searchResult).toHaveText(AssertText.SearchPage.emptySearchErrorMsg);
   }
 }
 

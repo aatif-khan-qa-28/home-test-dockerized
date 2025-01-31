@@ -8,5 +8,9 @@
     },
     "GridPage": {
         "productName": "Super Pepperoni"
+    },
+    "SearchPage": {
+        "emptySearchErrorMsg": "Please provide a search word.",
+        "successSearchMsg": "Found one result for "
     }
 }

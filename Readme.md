@@ -37,20 +37,23 @@ home-test-dockerized
 ├── Dockerfile                     # Docker image for Playwright tests
 ├── docker-compose.yml             # Docker Compose file for multi-container setup
 ├── playwright.config.js           # Playwright configuration file
+├── playwright-report/             # HTML report will be stored here
 ├── test-steps/                    # Actions/Steps perfomed on the page
 │   ├── CheckoutPageSteps.js       
 │   ├── GridPageSteps.js           
 │   ├── HomePageSteps.js           
 │   ├── LoginPageSteps.js          
 │   ├── OrderPageSteps.js          
-│   ├── SearchPageSteps.js    
+│   ├── SearchPageSteps.js 
+│   ├── BasePageSteps.js    
 ├── test-data/    
 │   ├── AssertTexts.js            # Test data with expected texts to assert with actual texts
 │   ├── checkoutFormData.js       # Test data to fill the Checkout Form
 │   ├── loginData.js              # Test data to Login with various usernames and passwords
 │   ├── search.json   
 ├── pages/
-│   ├── CheckoutPage.js            # page object class for Checkout page  
+│   ├── CheckoutPage.js            # page object class for Checkout page
+│   ├── BasePage.js                # page object class for Base page  
 │   ├── GridPage.js                # page object class for Grid page 
 │   ├── HomePage.js                # page object class for Home page  
 │   ├── LoginPage.js               # page object class for Login page 
@@ -61,6 +64,7 @@ home-test-dockerized
 |   ├── GridTestCases.spec.js      #playwright test cases: 7,8
 |   ├── LoginTestCases.spec.js     #playwright test cases: 1,2,3
 |   ├── SearchTestCases.spec.js    #playwright test cases: 9,10
+|   ├── BasePageTestCases.spec.js  
 ├── package.json                   # Node.js dependencies and scripts
 ├── package-lock.json              # Dependency lock file
 ├── README.md                      # Project documentation
