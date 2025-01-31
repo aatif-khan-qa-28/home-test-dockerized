@@ -140,3 +140,11 @@ You can customize these options as needed.
 
 ### **Test Results**
 Below are the sample HTML test reports which will be stored in `/playwright-report/` folder.
+
+<img width="745" alt="report-1" src="https://github.com/user-attachments/assets/cce35018-319e-4a85-9212-94cd8188785b" />
+
+<img width="379" alt="report-2" src="https://github.com/user-attachments/assets/325ac25e-8011-4f17-9db4-07c6dc8acfec" />
+
+---
+
+
