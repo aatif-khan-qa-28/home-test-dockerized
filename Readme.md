@@ -12,6 +12,7 @@ This repository contains an end-to-end testing framework for a `webapp` using **
   - [Running Locally](#running-locally)
   - [Running with Docker](#running-with-docker)
 - [Configuration](#configuration)
+- [Test Results](#test-results)
 
 ---
 
@@ -138,7 +139,9 @@ You can customize these options as needed.
 
 ---
 
-### **Test Results**
+## **Test Results**
+---
+### **Test Report**
 Below are the sample HTML test reports which will be stored in `/playwright-report/` folder.
 
 <img width="745" alt="report-1" src="https://github.com/user-attachments/assets/cce35018-319e-4a85-9212-94cd8188785b" />
